@@ -1,0 +1,46 @@
+<mat-card *ngIf="articuloSeleccionado">
+
+  <h2>{{ titulo }}</h2>
+
+  <form novalidate #f="ngForm">
+
+    <mat-form-field class="all-width">
+      <input matInput required name="art_Codigo"
+      placeholder="Codigo"
+      [ngModel] ="articuloSeleccionado.art_Codigo" #Codigo="ngModel">
+        <mat-error *ngIf="Codigo.invalid">"Debe ingresar un Código</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="all-width">
+      <input matInput required name="art_Descripcion"
+      placeholder="Descripcion"
+      [ngModel] = "articuloSeleccionado.art_Descripcion"
+      #descripcion="ngModel">
+        <mat-error *ngIf="descripcion.invalid">Debe ingresar una Descripción</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="all-width">
+      <mat-select placeholder="Unidad Medida" [(ngModel)]="articuloSeleccionado.art_ume_Id" name="art_ume_Id">
+        <mat-option *ngFor="let ume of unidadesMedida" value="{{ ume.ume_Id }}">
+          {{ ume.ume_Codigo }} - {{ ume.ume_Descripcion }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-card-actions>
+      <button mat-button class="btn btn-default"
+      (click) = "Regresar()">
+        Cancelar
+      </button>
+
+      <button mat-button color="primary"
+      [disabled]="f.invalid"
+      (click) = "Guardar(f.value)"
+      class ="btn btn-primary">
+        Aceptar
+      </button>
+    </mat-card-actions>
+
+  </form>
+</mat-card>
+

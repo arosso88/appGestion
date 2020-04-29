@@ -1,0 +1,23 @@
+<mat-toolbar color="primary" class="mat-elevation-z3">
+  <mat-toolbar-row>
+    <span class="titulo">Gestión de Stock</span>
+  </mat-toolbar-row>
+  <mat-toolbar-row>
+    <a>Sesion</a>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="content">
+  <div class="menu">
+
+    <a routerLink="/articulos" routerLinkActive="activo">
+      <i class="material-icons">note_add</i><br/>
+      Articulos
+    </a>
+
+    <div class="contenido">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
