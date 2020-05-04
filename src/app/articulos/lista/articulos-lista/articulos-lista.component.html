@@ -1,6 +1,6 @@
-<div>
-  <span class="titulo">Listado de Artículos</span>
-</div>
+<mat-toolbar class="mat-toolbar">
+      <span>Listado de Artículos</span>
+</mat-toolbar>
 
 <div class="search-box">
   <mat-icon>search</mat-icon>
@@ -39,8 +39,12 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="EditarArticulo(element)">Editar</button>
-          <button mat-menu-item (click)="EliminarArticulo(element)">Eliminar</button>
+          <button mat-menu-item (click)="EditarArticulo(element)">
+            <mat-icon matTooltip="Editar" >edit</mat-icon>
+          </button>
+          <button mat-menu-item (click)="EliminarArticulo(element)">
+            <mat-icon matTooltip="Eliminar">delete</mat-icon>
+          </button>
         </mat-menu>
       </mat-cell>
     </ng-container>
@@ -50,4 +54,4 @@
   </mat-table>
 </div>
 
-<button mat-fab class="add-button" (click)="Agregar()">+</button>
+<button matTooltip="Nuevo" mat-fab class="add-button" (click)="Agregar()">+</button>

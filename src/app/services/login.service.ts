@@ -37,6 +37,10 @@ export class LoginService {
     localStorage.removeItem('token');
   }
 
+  GetUsuario(): string {
+    return localStorage.getItem('usuario');
+  }
+
   IrALoginPorTokenInvalido() {
     if (this.getToken() == null) {
       this._mensajesService.openSnackBar("Token inválido", "Aceptar", 3000);

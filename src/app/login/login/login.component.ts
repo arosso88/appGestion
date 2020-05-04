@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
-import {  MensajesService} from '../../services/mensajes.service';
+import { MensajesService} from '../../services/mensajes.service';
+import { AppComponent } from '../../app.component';
 
 @Component({
   selector: 'app-login',
@@ -14,11 +15,13 @@ export class LoginComponent implements OnInit {
   clave: string;
 
   constructor(private loginService: LoginService,
-    private _router: Router, private _mensajesService: MensajesService
+    private _router: Router, private _mensajesService: MensajesService,
+    private _appComponent: AppComponent
   ) {}
 
   ngOnInit(): void {
     this.loginService.limpiarToken();
+    this._appComponent.Session = "Iniciar Sesión"
   }
 
   Ingresar() {

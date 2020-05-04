@@ -29,6 +29,8 @@ import { LoginService } from './services/login.service';
 import { MensajesService } from './services/mensajes.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LoadingComponent } from './loading/loading/loading.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { LoadingComponent } from './loading/loading/loading.component';
   ],
   imports: [
     BrowserModule,
+    MatTooltipModule,
+    MatSidenavModule,
     MatSnackBarModule,
     MatToolbarModule,
     MatCardModule,

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { DataService } from  './services/data.service';
 import { Router } from  '@angular/router';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-root',
@@ -8,18 +9,37 @@ import { Router } from  '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  //titulo: string;
-  usuario: string;
-  clave: string;
+
+  @ViewChild('sidenav') sidenav: MatSidenav;
+  isExpanded = true;
+  showSubmenu: boolean = false;
+  isShowing = false;
+  showSubSubMenu: boolean = false;
+  Session: string;
 
   constructor(private _dataService: DataService,
     private _router: Router) {}
 
   ngOnInit() {
-    //this._dataService.TituloPrincipal$.subscribe(titulo => this.titulo = titulo);
   }
 
   Ingresar() {
     this._router.navigate(['/principal']);
+  }
+
+  IrAArticulos(){
+    this._router.navigate(['/articulos']);
+  }
+
+  mouseenter() {
+    if (!this.isExpanded) {
+      this.isShowing = true;
+    }
+  }
+
+  mouseleave() {
+    if (!this.isExpanded) {
+      this.isShowing = false;
+    }
   }
 }

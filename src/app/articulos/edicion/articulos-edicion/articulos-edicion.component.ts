@@ -34,11 +34,11 @@ export class ArticulosEdicionComponent implements OnInit {
 
     if (operacion === "agregar") {
       this.articuloSeleccionado = new Articulos(0, '', '', 0, '', '');
-      this._dataService.TituloEdicionArticulo('Nuevo Artículo');
+      this.titulo = "Nuevo Artículo";
     }
     else {
       this._articulosService.Get(id).subscribe(articulo => this.articuloSeleccionado = articulo);
-      this._dataService.TituloEdicionArticulo('Editar Artículo');
+      this.titulo = "Editar Artículo";
     }
 
     this._dataService.TituloEdicionArticulo$.subscribe(titulo => this.titulo = titulo);
