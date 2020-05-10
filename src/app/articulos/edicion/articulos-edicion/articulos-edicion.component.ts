@@ -6,6 +6,8 @@ import { ArticulosHttpService } from '../../../services/articulos-http.service';
 import { UnidadesMedidaHttpService } from '../../../services/unidades-medida-http.service';
 import { UnidadesMedida } from '../../../entities/UnidadesMedida';
 import { LoginService } from '../../../services/login.service';
+import { CatIvaArticulo } from '../../../entities/CatIvaArticulo';
+import { CatIvaArtService } from '../../../services/cat-iva-art.service';
 
 @Component({
   selector: 'app-articulos-edicion',
@@ -16,24 +18,27 @@ export class ArticulosEdicionComponent implements OnInit {
   articuloSeleccionado: Articulos;
   titulo: string;
   unidadesMedida: UnidadesMedida[];
+  categoriasIvaArticulo: CatIvaArticulo[];
 
   constructor(private _router: Router,
     private _activeRoute: ActivatedRoute,
     private _dataService: DataService,
     private _articulosService: ArticulosHttpService,
     private _umeService: UnidadesMedidaHttpService,
-    private _loginService: LoginService) { }
+    private _loginService: LoginService,
+    private _ciaService: CatIvaArtService) { }
 
   ngOnInit(): void {
     this._loginService.IrALoginPorTokenInvalido();
 
     this.SetearUnidadesMedida();
+    this.SetearCIA();
 
     const id = Number(this._activeRoute.snapshot.paramMap.get('id'));
     const operacion = this._activeRoute.snapshot.paramMap.get("operacion");
 
     if (operacion === "agregar") {
-      this.articuloSeleccionado = new Articulos(0, '', '', 0, '', '');
+      this.articuloSeleccionado = new Articulos(0, '', '', 0, 0, '', '', '');
       this.titulo = "Nuevo Artículo";
     }
     else {
@@ -47,6 +52,12 @@ export class ArticulosEdicionComponent implements OnInit {
   SetearUnidadesMedida(){
     this._umeService.GetAll().subscribe(
       ume => { this.unidadesMedida = ume; }
+    )
+  }
+
+  SetearCIA(){
+    this._ciaService.GetAll().subscribe(
+      cia => { this.categoriasIvaArticulo = cia; }
     )
   }
 

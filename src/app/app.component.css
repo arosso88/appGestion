@@ -125,6 +125,7 @@ a {
 .example-toolbar {
   background: #009249;
   color: #fff;
+  height: 54px;
 }
 
 .example-sidenav {

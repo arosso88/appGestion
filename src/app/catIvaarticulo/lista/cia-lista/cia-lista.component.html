@@ -1,5 +1,5 @@
 <mat-toolbar class="mat-toolbar">
-      <span>Listado de Artículos</span>
+  <span>Listado de Categorías Iva Artículo</span>
 </mat-toolbar>
 
 <div class="search-box">
@@ -14,27 +14,17 @@
 
     <ng-container matColumnDef="Id">
       <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{element.art_Id}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="Codigo">
-      <mat-header-cell *matHeaderCellDef>Código</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{element.art_Codigo}}</mat-cell>
+      <mat-cell *matCellDef="let element">{{element.cia_Id}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Descripcion">
       <mat-header-cell *matHeaderCellDef>Descripción</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{element.art_Descripcion}}</mat-cell>
+      <mat-cell *matCellDef="let element">{{element.cia_Descripcion}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="UM">
-      <mat-header-cell *matHeaderCellDef>UM.</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{element.codigoUME}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="CIA">
-      <mat-header-cell *matHeaderCellDef>Cat. IVA</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{element.descripcionCIA}}</mat-cell>
+    <ng-container matColumnDef="PorcentajeIva">
+      <mat-header-cell *matHeaderCellDef>Porcentaje Iva</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.cia_PorcentajeIva}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="acciones">
@@ -44,10 +34,10 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="EditarArticulo(element)">
+          <button mat-menu-item (click)="EditarCIA(element)">
             <mat-icon matTooltip="Editar" >edit</mat-icon>
           </button>
-          <button mat-menu-item (click)="EliminarArticulo(element)">
+          <button mat-menu-item (click)="EliminarCIA(element)">
             <mat-icon matTooltip="Eliminar">delete</mat-icon>
           </button>
         </mat-menu>
@@ -56,6 +46,7 @@
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
   </mat-table>
 </div>
 

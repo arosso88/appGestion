@@ -31,6 +31,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LoadingComponent } from './loading/loading/loading.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { CatIvaArtService } from './services/cat-iva-art.service';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { CiaListaComponent } from './cativaarticulo/lista/cia-lista/cia-lista.component';
+import { CiaEdicionComponent } from './cativaarticulo/edicion/cia-edicion/cia-edicion.component';
 
 @NgModule({
   declarations: [
@@ -39,10 +43,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ArticulosEdicionComponent,
     LoginComponent,
     PrincipalComponent,
-    LoadingComponent
+    LoadingComponent,
+    CiaListaComponent,
+    CiaEdicionComponent
   ],
   imports: [
     BrowserModule,
+    MatExpansionModule,
     MatTooltipModule,
     MatSidenavModule,
     MatSnackBarModule,
@@ -64,6 +71,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     RouterModule.forRoot([
       { path: 'articulos', component: ArticulosListaComponent },
       { path: 'articulos/:operacion/:id', component: ArticulosEdicionComponent },
+      { path: 'cia', component: CiaListaComponent },
+      { path: 'cia/:operacion/:id', component: CiaEdicionComponent },
       { path: 'principal', component: PrincipalComponent },
       { path: 'login', component: LoginComponent },
       { path: '',   redirectTo: 'login', pathMatch: 'full' }
@@ -74,6 +83,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     UnidadesMedidaHttpService,
     LoginService,
     MensajesService,
+    CatIvaArtService,
     DataService,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true } ],
   bootstrap: [AppComponent]

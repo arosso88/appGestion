@@ -1,9 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Articulos } from '../../../entities/Articulos';
 import { ArticulosHttpService } from '../../../services/articulos-http.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from  '@angular/router';
-import { DataService } from '../../../services/data.service';
 import { LoginService } from '../../../services/login.service';
 
 @Component({
@@ -14,12 +13,11 @@ import { LoginService } from '../../../services/login.service';
 export class ArticulosListaComponent implements OnInit {
   articulos: Articulos[];
   dataSource: MatTableDataSource<Articulos>;
-  displayedColumns = ['Id', 'Codigo', 'Descripcion', 'UM', 'acciones']
+  displayedColumns = ['Id', 'Codigo', 'Descripcion', 'UM', 'CIA' , 'acciones']
 
   constructor(
         private articulosHttpSrv: ArticulosHttpService,
         private _router: Router,
-        private _dataService: DataService,
         private _loginService: LoginService) { }
 
   ngOnInit(): void {

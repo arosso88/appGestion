@@ -4,7 +4,9 @@ export class Articulos {
     public art_Codigo: string,
     public art_Descripcion: string,
     public art_ume_Id: number,
-    public CodigoUME: string,
-    public DescripcionUME: string
+    public art_cia_Id: number,
+    public codigoUME: string,
+    public descripcionUME: string,
+    public descripcionCIA: string
   ) {}
 }

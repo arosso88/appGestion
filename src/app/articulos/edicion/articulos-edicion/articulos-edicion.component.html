@@ -21,13 +21,23 @@
     </mat-form-field>
 
     <mat-form-field class="all-width">
-      <mat-select placeholder="Unidad Medida" #ume="ngModel" [(ngModel)]="articuloSeleccionado.art_ume_Id" name="art_ume_Id">
-        <mat-option *ngFor="let ume of unidadesMedida" value="{{ ume.ume_Id }}">
+      <mat-select placeholder="Unidad Medida" required
+      [(ngModel)]="articuloSeleccionado.art_ume_Id" name="art_ume_Id">
+      <mat-option>--</mat-option>
+        <mat-option *ngFor="let ume of unidadesMedida" [value]="ume.ume_Id">
           {{ ume.ume_Codigo }} - {{ ume.ume_Descripcion }}
         </mat-option>
-        <mat-error *ngIf="ume.invalid">Debe ingresar una Unidad de Medida</mat-error>
       </mat-select>
+    </mat-form-field>
 
+    <mat-form-field class="all-width">
+      <mat-select placeholder="Categoria Iva" required
+      [(ngModel)]="articuloSeleccionado.art_cia_Id" name="art_cia_Id">
+      <mat-option>--</mat-option>
+        <mat-option *ngFor="let cia of categoriasIvaArticulo" [value]="cia.cia_Id">
+          {{ cia.cia_Descripcion }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
 
     <mat-card-actions>
