@@ -1,0 +1,54 @@
+<mat-toolbar class="mat-toolbar">
+  <span>{{ titulo }}</span>
+</mat-toolbar>
+
+<mat-card *ngIf="clienteSeleccionado">
+
+  <form novalidate #f="ngForm">
+
+    <mat-form-field class="all-width">
+      <input matInput required name="cli_clc_Codigo" type="number"
+      placeholder="Código"
+      [ngModel] ="clienteSeleccionado.cli_clc_Codigo" #Codigo="ngModel">
+        <mat-error *ngIf="Codigo.invalid">Debe ingresar un Código</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="all-width">
+      <input matInput required name="cli_Nombre"
+      placeholder="Nombre"
+      [ngModel] ="clienteSeleccionado.cli_Nombre" #Nombre="ngModel">
+        <mat-error *ngIf="Nombre.invalid">Debe ingresar un Nombre</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="all-width">
+      <input matInput required name="cli_Apellido"
+      placeholder="Apellido"
+      [ngModel] ="clienteSeleccionado.cli_Apellido" #Apellido="ngModel">
+        <mat-error *ngIf="Apellido.invalid">Debe ingresar un Apellido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="all-width">
+      <input matInput required name="cli_Direccion"
+      placeholder="Dirección"
+      [ngModel] ="clienteSeleccionado.cli_Direccion" #Direccion="ngModel">
+        <mat-error *ngIf="Direccion.invalid">Debe ingresar una Dirección</mat-error>
+    </mat-form-field>
+
+    <mat-card-actions>
+      <button mat-button class="btn btn-default"
+      (click) = "Regresar()">
+        Cancelar
+      </button>
+
+      <button mat-button color="primary"
+      [disabled]="f.invalid"
+      (click) = "Guardar(f.value)"
+      class ="btn btn-primary">
+        Aceptar
+      </button>
+    </mat-card-actions>
+
+  </form>
+
+</mat-card>
+

@@ -74,7 +74,7 @@
       </mat-list-item>
       <mat-menu #gestion="matMenu">
         <button mat-menu-item (click)="IrAArticulos()">Artículos</button>
-        <button mat-menu-item>Clientes</button>
+        <button mat-menu-item (click)="IrAClientes()">Clientes</button>
       </mat-menu>
 
       <mat-list-item (click)="menuConfiguracion.openMenu()">
@@ -82,9 +82,9 @@
         <button mat-icon-button #menuConfiguracion="matMenuTrigger" [matMenuTriggerFor]="config"></button>
       </mat-list-item>
       <mat-menu #config="matMenu">
-        <button mat-menu-item>Unidades Medida</button>
+        <button mat-menu-item (click)="IrAUME()">Unidades Medida</button>
         <button mat-menu-item (click)="IrACIA()">Categorías Iva Artículo</button>
-        <button mat-menu-item>Tipos Monedas</button>
+        <button mat-menu-item (click)="IrATMO()">Tipos Monedas</button>
         <button mat-menu-item>Tipos Comprobantes</button>
       </mat-menu>
 

@@ -35,6 +35,14 @@ import { CatIvaArtService } from './services/cat-iva-art.service';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { CiaListaComponent } from './cativaarticulo/lista/cia-lista/cia-lista.component';
 import { CiaEdicionComponent } from './cativaarticulo/edicion/cia-edicion/cia-edicion.component';
+import { UmelistaComponent } from './unidadesmedida/lista/umelista/umelista.component';
+import { UmeedicionComponent } from './unidadesmedida/edicion/umeedicion/umeedicion.component';
+import { TiposmonedaslistaComponent } from './tiposmonedas/lista/tiposmonedaslista/tiposmonedaslista.component';
+import { TiposmonedasedicionComponent } from './tiposMonedas/edicion/tiposmonedasedicion/tiposmonedasedicion.component';
+import { ClientesListaComponent } from './clientes/lista/clientes-lista/clientes-lista.component';
+import { ClientesEdicionComponent } from './clientes/edicion/clientes-edicion/clientes-edicion.component';
+import { TmoService } from './services/tmo.service';
+import { ClientesService } from './services/clientes.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +53,13 @@ import { CiaEdicionComponent } from './cativaarticulo/edicion/cia-edicion/cia-ed
     PrincipalComponent,
     LoadingComponent,
     CiaListaComponent,
-    CiaEdicionComponent
+    CiaEdicionComponent,
+    UmelistaComponent,
+    UmeedicionComponent,
+    TiposmonedaslistaComponent,
+    TiposmonedasedicionComponent,
+    ClientesListaComponent,
+    ClientesEdicionComponent
   ],
   imports: [
     BrowserModule,
@@ -71,8 +85,14 @@ import { CiaEdicionComponent } from './cativaarticulo/edicion/cia-edicion/cia-ed
     RouterModule.forRoot([
       { path: 'articulos', component: ArticulosListaComponent },
       { path: 'articulos/:operacion/:id', component: ArticulosEdicionComponent },
+      { path: 'tmo', component: TiposmonedaslistaComponent },
+      { path: 'tmo/:operacion/:id', component: TiposmonedasedicionComponent },
+      { path: 'clientes', component: ClientesListaComponent },
+      { path: 'clientes/:operacion/:id', component: ClientesEdicionComponent },
       { path: 'cia', component: CiaListaComponent },
       { path: 'cia/:operacion/:id', component: CiaEdicionComponent },
+      { path: 'ume', component: UmelistaComponent },
+      { path: 'ume/:operacion/:id', component: UmeedicionComponent },
       { path: 'principal', component: PrincipalComponent },
       { path: 'login', component: LoginComponent },
       { path: '',   redirectTo: 'login', pathMatch: 'full' }
@@ -84,6 +104,8 @@ import { CiaEdicionComponent } from './cativaarticulo/edicion/cia-edicion/cia-ed
     LoginService,
     MensajesService,
     CatIvaArtService,
+    TmoService,
+    ClientesService,
     DataService,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true } ],
   bootstrap: [AppComponent]

@@ -2,22 +2,22 @@
   <span>{{ titulo }}</span>
 </mat-toolbar>
 
-<mat-card *ngIf="ciaSelecionado">
+<mat-card *ngIf="umeSeleccionada">
 
   <form novalidate #f="ngForm">
 
     <mat-form-field class="all-width">
-      <input matInput required name="cia_Descripcion"
-      placeholder="Descripcion"
-      [ngModel] ="ciaSelecionado.cia_Descripcion" #Descripcion="ngModel">
-        <mat-error *ngIf="Descripcion.invalid">Debe ingresar una Descripción</mat-error>
+      <input matInput required name="ume_Codigo"
+      placeholder="Código"
+      [ngModel] ="umeSeleccionada.ume_Codigo" #Codigo="ngModel">
+        <mat-error *ngIf="Codigo.invalid">Debe ingresar un Código</mat-error>
     </mat-form-field>
 
     <mat-form-field class="all-width">
-      <input matInput required name="cia_PorcentajeIva" type="number"
-      placeholder="Porcentaje Iva"
-      [ngModel] ="ciaSelecionado.cia_PorcentajeIva" #PorcentajeIva="ngModel">
-        <mat-error *ngIf="PorcentajeIva.invalid">Debe ingresar un Porcentaje de Iva</mat-error>
+      <input matInput required name="ume_Descripcion"
+      placeholder="Descripcion"
+      [ngModel] ="umeSeleccionada.ume_Descripcion" #Descripcion="ngModel">
+        <mat-error *ngIf="Descripcion.invalid">Debe ingresar una Descripción</mat-error>
     </mat-form-field>
 
     <mat-card-actions>

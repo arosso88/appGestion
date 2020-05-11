@@ -38,6 +38,10 @@ export class CatIvaArtService {
     return this._httpClient.put<void>(this.GetUrlId(cia.cia_Id), this.GetDto(cia))
   }
 
+  Add(cia: CatIvaArticulo): Observable<void> {
+    return this._httpClient.post<void>(this._ciaURL, this.GetDto(cia))
+  }
+
   GetDto(cia: CatIvaArticulo): CatIvaArticuloDto {
     return new CatIvaArticuloDto(cia.cia_Id, cia.cia_Descripcion, cia.cia_PorcentajeIva);
   }

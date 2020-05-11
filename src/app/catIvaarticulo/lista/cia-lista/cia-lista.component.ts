@@ -38,7 +38,6 @@ export class CiaListaComponent implements OnInit {
     this._router.navigate(['/cia', 'editar', cia.cia_Id]);
   }
 
-
   EliminarCIA(cia: CatIvaArticulo) {
     this._ciaService.Delete(cia.cia_Id).subscribe(
       () => {

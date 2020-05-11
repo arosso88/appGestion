@@ -2,6 +2,7 @@ import { Component, ViewChild, HostListener  } from '@angular/core';
 import { DataService } from  './services/data.service';
 import { Router } from  '@angular/router';
 import { MatSidenav } from '@angular/material/sidenav';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-root',
@@ -51,6 +52,18 @@ export class AppComponent {
 
   IrACIA(){
     this._router.navigate(['/cia']);
+  }
+
+  IrAUME(){
+    this._router.navigate(['/ume']);
+  }
+
+  IrATMO(){
+    this._router.navigate(['/tmo']);
+  }
+
+  IrAClientes(){
+    this._router.navigate(['/clientes']);
   }
 
   mouseenter() {
