@@ -5,14 +5,16 @@
 <mat-card *ngIf="articuloSeleccionado">
   <form novalidate #f="ngForm">
 
-    <mat-form-field class="all-width">
+    <mat-form-field>
       <input matInput required name="art_Codigo"
       placeholder="Codigo"
       [ngModel] ="articuloSeleccionado.art_Codigo" #Codigo="ngModel">
         <mat-error *ngIf="Codigo.invalid">"Debe ingresar un Código</mat-error>
     </mat-form-field>
 
-    <mat-form-field class="all-width">
+    <br>
+
+    <mat-form-field>
       <input matInput required name="art_Descripcion"
       placeholder="Descripcion"
       [ngModel] = "articuloSeleccionado.art_Descripcion"

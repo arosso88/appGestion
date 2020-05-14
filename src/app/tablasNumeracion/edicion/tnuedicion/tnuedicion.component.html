@@ -1,0 +1,54 @@
+<mat-toolbar class="mat-toolbar">
+  <span>{{ titulo }}</span>
+</mat-toolbar>
+
+<mat-card *ngIf="tnuSeleccionada">
+
+  <form novalidate #f="ngForm">
+
+    <mat-form-field class="all-width">
+      <input matInput required name="tnu_Descripcion"
+      placeholder="Descripcion"
+      [ngModel] ="tnuSeleccionada.tnu_Descripcion" #Descripcion="ngModel">
+        <mat-error *ngIf="Descripcion.invalid">Debe ingresar una Descripción</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="all-width">
+      <input matInput required name="tnu_NroPuntoVenta" type="number"
+      placeholder="Nro. Punto Venta"
+      [ngModel] ="tnuSeleccionada.tnu_NroPuntoVenta" #PuntoVenta="ngModel">
+        <mat-error *ngIf="PuntoVenta.invalid">Debe ingresar un Nro. de Punto de Venta</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="all-width">
+      <input matInput required name="tnu_NroComprobante" type="number"
+      placeholder="Nro. Comprobante"
+      [ngModel] ="tnuSeleccionada.tnu_NroComprobante" #NroComprobante="ngModel">
+        <mat-error *ngIf="NroComprobante.invalid">Debe ingresar un Nro. Comprobante</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="all-width">
+      <input matInput required name="tnu_Letra"
+      placeholder="Letra"
+      [ngModel] ="tnuSeleccionada.tnu_Letra" #Letra="ngModel">
+        <mat-error *ngIf="Letra.invalid">Debe ingresar una Letra</mat-error>
+    </mat-form-field>
+
+    <mat-card-actions>
+      <button mat-button class="btn btn-default"
+      (click) = "Regresar()">
+        Cancelar
+      </button>
+
+      <button mat-button color="primary"
+      [disabled]="f.invalid"
+      (click) = "Guardar(f.value)"
+      class ="btn btn-primary">
+        Aceptar
+      </button>
+    </mat-card-actions>
+
+  </form>
+
+</mat-card>
+

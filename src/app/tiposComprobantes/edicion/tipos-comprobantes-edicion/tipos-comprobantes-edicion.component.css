@@ -1,0 +1,11 @@
+.all-width {
+  margin-bottom: 0.5em;
+  width: 60%;
+}
+
+.mat-toolbar {
+  background: #1c1a1b;
+  color: #fff;
+  text-align: center;
+  font-size: 18px;
+}

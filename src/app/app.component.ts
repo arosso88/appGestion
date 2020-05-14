@@ -62,6 +62,14 @@ export class AppComponent {
     this._router.navigate(['/tmo']);
   }
 
+  IrATNU() {
+    this._router.navigate(['/tnu']);
+  }
+
+  IrATCO() {
+    this._router.navigate(['/tco']);
+  }
+
   IrAClientes(){
     this._router.navigate(['/clientes']);
   }

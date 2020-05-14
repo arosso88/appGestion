@@ -1,0 +1,103 @@
+<mat-toolbar class="mat-toolbar">
+  <span>{{ titulo }}</span>
+</mat-toolbar>
+
+<mat-card *ngIf="tcoSeleccionado">
+  <form novalidate #f="ngForm">
+
+
+    <mat-form-field class="all-width">
+      <input matInput required name="tco_Codigo"
+      placeholder="Codigo"
+      [ngModel] ="tcoSeleccionado.tco_Codigo" #Codigo="ngModel">
+        <mat-error *ngIf="Codigo.invalid">"Debe ingresar un Código</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="all-width">
+      <input matInput required name="tco_Descripcion"
+      placeholder="Descripcion"
+      [ngModel] ="tcoSeleccionado.tco_Descripcion" #Descripcion="ngModel">
+        <mat-error *ngIf="Descripcion.invalid">"Debe ingresar una Descripción</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="all-width">
+      <mat-select placeholder="Tipo"
+      [(ngModel)]="tcoSeleccionado.tco_Tipo" name="tco_Tipo">
+        <mat-option *ngFor="let t of tcoTipos" value="{{ t.value }}">
+          {{ t.descripcion }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="all-width">
+      <mat-select placeholder="Deb. Cred. Vend."
+      [(ngModel)]="tcoSeleccionado.tco_DebitoCreditoVdor" name="tco_DebitoCreditoVdor">
+        <mat-option *ngFor="let t of debCredV" value="{{ t.value }}">
+          {{ t.descripcion }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="all-width">
+      <mat-select placeholder="Deb. Cred. Comp."
+      [(ngModel)]="tcoSeleccionado.tco_DebitoCreditoCdor" name="tco_DebitoCreditoCdor">
+        <mat-option *ngFor="let t of debCredC" value="{{ t.value }}">
+          {{ t.descripcion }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="all-width">
+      <mat-select placeholder="Tabla Numeracion"
+      [(ngModel)]="tcoSeleccionado.tco_tnu_Id" name="tco_tnu_Id">
+        <mat-option *ngFor="let tnu of tnus" [value]="tnu.tnu_Id">
+          {{ tnu.tnu_Descripcion }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- <mat-form-field class="all-width">
+      <mat-select placeholder="Emitido/Recibido"
+      [(ngModel)]="tcoSeleccionado.tco_EmitidoRecibido" name="tco_EmitidoRecibido">
+        <mat-option *ngFor="let t of emiReci" value="{{ t.value }}">
+          {{ t.descripcion }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field> -->
+    <br/><br/>
+    Emitido/Recibido
+    <br/><br/>
+    <mat-radio-group [ngModel] = "tcoSeleccionado.tco_EmitidoRecibido" name = "tco_EmitidoRecibido">
+      <mat-radio-button class = "all-width"
+        *ngFor="let t of emiReci"
+        value="{{ t.value }}">
+        {{ t.descripcion }} <br/>
+      </mat-radio-button>
+    </mat-radio-group>
+    <br/><br/>
+
+    <mat-form-field class="all-width">
+      <mat-select placeholder="Movimiento Stock"
+      [(ngModel)]="tcoSeleccionado.tco_MovimientoStock" name="tco_MovimientoStock">
+        <mat-option *ngFor="let t of movStock" value="{{ t.value }}">
+          {{ t.descripcion }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-card-actions>
+      <button mat-button class="btn btn-default"
+      (click) = "Regresar()">
+        Cancelar
+      </button>
+
+      <button mat-button color="primary"
+      [disabled]="f.invalid"
+      (click) = "Guardar(f.value)"
+      class ="btn btn-primary">
+        Aceptar
+      </button>
+    </mat-card-actions>
+
+  </form>
+</mat-card>

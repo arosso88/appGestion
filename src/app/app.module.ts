@@ -43,6 +43,12 @@ import { ClientesListaComponent } from './clientes/lista/clientes-lista/clientes
 import { ClientesEdicionComponent } from './clientes/edicion/clientes-edicion/clientes-edicion.component';
 import { TmoService } from './services/tmo.service';
 import { ClientesService } from './services/clientes.service';
+import { TnulistaComponent } from './tablasnumeracion/lista/tnulista/tnulista.component';
+import { TnuedicionComponent } from './tablasnumeracion/edicion/tnuedicion/tnuedicion.component';
+import { TnuServiceService } from './services/tnu-service.service';
+import { TiposcomprobantesService } from './services/tiposcomprobantes.service';
+import { TipoComprobantesListaComponent } from './tiposcomprobantes/lista/tipo-comprobantes-lista/tipo-comprobantes-lista.component';
+import { TiposComprobantesEdicionComponent } from './tiposcomprobantes/edicion/tipos-comprobantes-edicion/tipos-comprobantes-edicion.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +65,11 @@ import { ClientesService } from './services/clientes.service';
     TiposmonedaslistaComponent,
     TiposmonedasedicionComponent,
     ClientesListaComponent,
-    ClientesEdicionComponent
+    ClientesEdicionComponent,
+    TnulistaComponent,
+    TnuedicionComponent,
+    TipoComprobantesListaComponent,
+    TiposComprobantesEdicionComponent
   ],
   imports: [
     BrowserModule,
@@ -93,6 +103,10 @@ import { ClientesService } from './services/clientes.service';
       { path: 'cia/:operacion/:id', component: CiaEdicionComponent },
       { path: 'ume', component: UmelistaComponent },
       { path: 'ume/:operacion/:id', component: UmeedicionComponent },
+      { path: 'tnu', component: TnulistaComponent },
+      { path: 'tnu/:operacion/:id', component: TnuedicionComponent },
+      { path: 'tco', component: TipoComprobantesListaComponent },
+      { path: 'tco/:operacion/:id', component: TiposComprobantesEdicionComponent },
       { path: 'principal', component: PrincipalComponent },
       { path: 'login', component: LoginComponent },
       { path: '',   redirectTo: 'login', pathMatch: 'full' }
@@ -106,6 +120,8 @@ import { ClientesService } from './services/clientes.service';
     CatIvaArtService,
     TmoService,
     ClientesService,
+    TnuServiceService,
+    TiposcomprobantesService,
     DataService,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true } ],
   bootstrap: [AppComponent]
