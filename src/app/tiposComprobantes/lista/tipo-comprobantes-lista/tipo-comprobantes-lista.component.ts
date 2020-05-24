@@ -25,7 +25,7 @@ export class TipoComprobantesListaComponent implements OnInit {
   }
 
   CargarGrilla() {
-    this._tcoService.GetAll().subscribe(
+    this._tcoService.GetAll('').subscribe(
       tcos => {
         this.tcos = tcos;
         this.dataSource = new MatTableDataSource(this.tcos);
@@ -40,7 +40,7 @@ export class TipoComprobantesListaComponent implements OnInit {
   EliminarTCO(tco: TiposComprobantes) {
     this._tcoService.Delete(tco.tco_Id).subscribe(
       () => {
-        this._tcoService.GetAll().subscribe(
+        this._tcoService.GetAll('').subscribe(
           tcos => {
             this.tcos = tcos;
             this.dataSource = new MatTableDataSource(this.tcos);

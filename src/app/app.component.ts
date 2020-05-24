@@ -46,6 +46,26 @@ export class AppComponent {
     this._router.navigate(['/principal']);
   }
 
+  IrACEMRecNuevo() {
+
+  }
+
+  IrACEMRecibidos() {
+
+  }
+
+  IrACEMEmitidos(){
+    this._router.navigate(['/cemEmi']);
+  }
+
+  IrACEMEmiNuevo() {
+    this._router.navigate(['/cemEmi', 'agregar', 0]);
+  }
+
+  IrAPrincipal() {
+    this.Ingresar();
+  }
+
   IrAArticulos(){
     this._router.navigate(['/articulos']);
   }

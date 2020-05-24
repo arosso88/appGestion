@@ -1,0 +1,93 @@
+<mat-toolbar class="mat-toolbar">
+  <span>Comprobantes Emitidos</span>
+</mat-toolbar>
+
+<div class="search-box">
+  <mat-icon>search</mat-icon>
+  <mat-form-field>
+    <input type="color:black;" matInput #filtrar placeholder="filtrar..." (keyup)="Filtrar(filtrar.value)">
+  </mat-form-field>
+</div>
+
+<div class="table mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="Id">
+      <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.cem_Id}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Fecha">
+      <mat-header-cell *matHeaderCellDef>Fecha Emisión</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.cem_FechaEmision}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="TcoCodigo">
+      <mat-header-cell *matHeaderCellDef>Tipo Cbte.</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.TcoCodigo}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="PtoVenta">
+      <mat-header-cell *matHeaderCellDef>Punto Vta.</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.cem_NroPuntoVenta}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Numero">
+      <mat-header-cell *matHeaderCellDef>Nro Cbte.</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.cem_NroComprobante}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Letra">
+      <mat-header-cell *matHeaderCellDef>Letra</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.cem_Letra}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Vendedor">
+      <mat-header-cell *matHeaderCellDef>Vendedor</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.NombreVendedor}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Comprador">
+      <mat-header-cell *matHeaderCellDef>Comprador</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.NombreComprador}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Subtotal">
+      <mat-header-cell *matHeaderCellDef>Subtotal</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.cem_ImporteSubtotal}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Iva">
+      <mat-header-cell *matHeaderCellDef>Iva</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.cem_ImporteIva}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Total">
+      <mat-header-cell *matHeaderCellDef>Total</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.cem_ImporteTotal}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="acciones">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-button [matMenuTriggerFor]="menu" class="accion">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="EditarCEM(element)">
+            <mat-icon matTooltip="Editar" >edit</mat-icon>
+          </button>
+          <button mat-menu-item (click)="EliminarCEM(element)">
+            <mat-icon matTooltip="Eliminar">delete</mat-icon>
+          </button>
+        </mat-menu>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+</div>
+
+<button matTooltip="Nuevo" mat-fab class="add-button" (click)="Agregar()">+</button>

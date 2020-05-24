@@ -49,6 +49,9 @@ import { TnuServiceService } from './services/tnu-service.service';
 import { TiposcomprobantesService } from './services/tiposcomprobantes.service';
 import { TipoComprobantesListaComponent } from './tiposcomprobantes/lista/tipo-comprobantes-lista/tipo-comprobantes-lista.component';
 import { TiposComprobantesEdicionComponent } from './tiposcomprobantes/edicion/tipos-comprobantes-edicion/tipos-comprobantes-edicion.component';
+import { CemEmiComponent } from './comprobantesemitidos/lista/cem-emi/cem-emi.component';
+import { ComprobantesService } from './services/comprobantes.service';
+import { CemEmiEdicionComponent } from './comprobantesemitidos/edicion/cem-emi-edicion/cem-emi-edicion.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +72,9 @@ import { TiposComprobantesEdicionComponent } from './tiposcomprobantes/edicion/t
     TnulistaComponent,
     TnuedicionComponent,
     TipoComprobantesListaComponent,
-    TiposComprobantesEdicionComponent
+    TiposComprobantesEdicionComponent,
+    CemEmiComponent,
+    CemEmiEdicionComponent
   ],
   imports: [
     BrowserModule,
@@ -108,6 +113,8 @@ import { TiposComprobantesEdicionComponent } from './tiposcomprobantes/edicion/t
       { path: 'tco', component: TipoComprobantesListaComponent },
       { path: 'tco/:operacion/:id', component: TiposComprobantesEdicionComponent },
       { path: 'principal', component: PrincipalComponent },
+      { path: 'cemEmi', component: CemEmiComponent },
+      { path: 'cemEmi/:operacion/:id', component: CemEmiEdicionComponent },
       { path: 'login', component: LoginComponent },
       { path: '',   redirectTo: 'login', pathMatch: 'full' }
     ]),
@@ -122,6 +129,7 @@ import { TiposComprobantesEdicionComponent } from './tiposcomprobantes/edicion/t
     ClientesService,
     TnuServiceService,
     TiposcomprobantesService,
+    ComprobantesService,
     DataService,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true } ],
   bootstrap: [AppComponent]

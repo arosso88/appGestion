@@ -68,6 +68,11 @@
     [fixedTopGap]>
 
     <mat-nav-list>
+      <mat-list-item (click)="IrAPrincipal()">
+        <mat-icon>home</mat-icon>Principal
+        <button mat-icon-button></button>
+      </mat-list-item>
+
       <mat-list-item (click)="menuGestion.openMenu()">
         <mat-icon>dashboard</mat-icon>Gestión
         <button mat-icon-button #menuGestion="matMenuTrigger"  [matMenuTriggerFor]="gestion"></button>
@@ -87,6 +92,24 @@
         <button mat-menu-item (click)="IrATMO()">Tipos Monedas</button>
         <button mat-menu-item (click)="IrATNU()">Tablas de Numeración</button>
         <button mat-menu-item (click)="IrATCO()">Tipos Comprobantes</button>
+      </mat-menu>
+
+      <mat-list-item (click)="menuComprobantesEmitidos.openMenu()">
+        <mat-icon>assignment</mat-icon>Comprobantes Emitidos
+        <button mat-icon-button #menuComprobantesEmitidos="matMenuTrigger" [matMenuTriggerFor]="cemEmitidos"></button>
+      </mat-list-item>
+      <mat-menu #cemEmitidos="matMenu">
+        <button mat-menu-item (click)="IrACEMEmitidos()">Listado</button>
+        <button mat-menu-item (click)="IrACEMEmiNuevo()">Nuevo</button>
+      </mat-menu>
+
+      <mat-list-item (click)="menuComprobantesRecibidos.openMenu()">
+        <mat-icon>assessment</mat-icon>Comprobantes Recibidos
+        <button mat-icon-button #menuComprobantesRecibidos="matMenuTrigger" [matMenuTriggerFor]="cemRecibidos"></button>
+      </mat-list-item>
+      <mat-menu #cemRecibidos="matMenu">
+        <button mat-menu-item (click)="IrACEMRecibidos()">Listado</button>
+        <button mat-menu-item (click)="IrACEMRecNuevo()">Nuevo</button>
       </mat-menu>
 
     </mat-nav-list>

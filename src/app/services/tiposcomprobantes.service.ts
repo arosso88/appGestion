@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, pipe, ObservableLike } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TiposComprobantes } from '../entities/TiposComprobantes';
@@ -14,9 +14,12 @@ export class TiposcomprobantesService {
 
   constructor(private _httpClient: HttpClient) { }
 
-  GetAll(): Observable<TiposComprobantes[]> {
+  GetAll(emitidoRecibido: string): Observable<TiposComprobantes[]> {
+    let params = new HttpParams();
+    params = params.append('emitidoRecibido', emitidoRecibido);
+
     return this._httpClient
-    .get<TiposComprobantesDto[]>(this._tcoURL)
+    .get<TiposComprobantesDto[]>(this._tcoURL,  { params })
     .pipe(
       map(dto => dto.map(tco => this.GetTCO(tco)))
     );
@@ -73,12 +76,12 @@ export class TiposcomprobantesService {
   }
 
   GetTiposComprobantes(): TiposComprobantes[] {
-    this.GetAll().subscribe(x => { this._tco = x; })
+    this.GetAll('').subscribe(x => { this._tco = x; })
     return this._tco;
   }
 
   FiltrarPorCodigo(codigo: string): Observable<TiposComprobantes[]> {
-    return this.GetAll()
+    return this.GetAll('')
       .pipe(
         map(x => x.filter(a => a.tco_Descripcion.toLowerCase().indexOf(codigo.toLowerCase()) >= 0))
       );
