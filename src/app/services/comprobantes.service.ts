@@ -27,6 +27,14 @@ export class ComprobantesService {
       );
   }
 
+  Get(id: number): Observable<Comprobantes> {
+    return this._httpClient
+      .get<ComprobantesDto>(this.GetUrlId(id))
+      .pipe(
+        map(x => this.GetComprobante(x))
+      );
+  }
+
   GetComprobante(cemDto: ComprobantesDto): Comprobantes {
     return new Comprobantes(cemDto.cem_Id,
       cemDto.cem_tco_Id,

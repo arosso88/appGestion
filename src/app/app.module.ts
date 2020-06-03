@@ -52,6 +52,10 @@ import { TiposComprobantesEdicionComponent } from './tiposcomprobantes/edicion/t
 import { CemEmiComponent } from './comprobantesemitidos/lista/cem-emi/cem-emi.component';
 import { ComprobantesService } from './services/comprobantes.service';
 import { CemEmiEdicionComponent } from './comprobantesemitidos/edicion/cem-emi-edicion/cem-emi-edicion.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ReactiveFormsModule} from '@angular/forms';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 @NgModule({
   declarations: [
@@ -84,6 +88,9 @@ import { CemEmiEdicionComponent } from './comprobantesemitidos/edicion/cem-emi-e
     MatSnackBarModule,
     MatToolbarModule,
     MatCardModule,
+    NgxMatSelectSearchModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MatIconModule,
     FormsModule,
     BrowserAnimationsModule,
@@ -97,6 +104,7 @@ import { CemEmiEdicionComponent } from './comprobantesemitidos/edicion/cem-emi-e
     MatTableModule,
     MatMenuModule,
     HttpClientModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       { path: 'articulos', component: ArticulosListaComponent },
       { path: 'articulos/:operacion/:id', component: ArticulosEdicionComponent },
@@ -130,6 +138,8 @@ import { CemEmiEdicionComponent } from './comprobantesemitidos/edicion/cem-emi-e
     TnuServiceService,
     TiposcomprobantesService,
     ComprobantesService,
+    MatDatepickerModule,
+    MatNativeDateModule,
     DataService,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true } ],
   bootstrap: [AppComponent]

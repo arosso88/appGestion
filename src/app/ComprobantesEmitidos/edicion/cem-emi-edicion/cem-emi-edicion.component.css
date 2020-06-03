@@ -3,6 +3,55 @@
   margin-bottom: 0.5em;
 }
 
+.cuarenta-width {
+  width: 40%;
+  margin-bottom: 0.5em;
+}
+
+.treinta-width {
+  width: 30%;
+  margin-bottom: 0.5em;
+}
+
+.diez-width {
+  width: 10%;
+  margin-bottom: 0.5em;
+}
+
+.diez-width-number {
+  width: 10%;
+  margin-bottom: 0.5em;
+  text-align: right;
+}
+
+.cinco-width {
+  width: 5%;
+  margin-bottom: 0.5em;
+}
+
+.cinco-width-number {
+  width: 5%;
+  margin-bottom: 0.5em;
+  text-align: right;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  color:black;
+}
+
+.veinte-width {
+  width: 20%;
+  margin-bottom: 0.5em;
+}
+
+.veinte-width-number {
+  width: 20%;
+  margin-bottom: 0.5em;
+  text-align: right;
+}
+
 .mat-toolbar {
   background: #1c1a1b;
   color: #fff;

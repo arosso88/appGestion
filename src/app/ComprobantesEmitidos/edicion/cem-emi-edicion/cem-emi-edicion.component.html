@@ -1,1 +1,86 @@
-<p>cem-emi-edicion works!</p>
+<mat-toolbar class="mat-toolbar">
+  <span>{{ titulo }}</span>
+</mat-toolbar>
+
+<mat-card *ngIf="cemSeleccionado">
+  <form novalidate #f="ngForm">
+
+    <mat-form-field class="cuarenta-width">
+      <mat-select placeholder="Tipo Cbte." required
+      [(ngModel)]="cemSeleccionado.cem_tco_Id" name="cem_tco_Id" (selectionChange)="CargarTnu($event.value)" >
+      <mat-option>--</mat-option>
+        <mat-option *ngFor="let tco of tiposComprobantes" [value]="tco.tco_Id">
+          {{ tco.tco_Codigo }} - {{ tco.tco_Descripcion }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <span>&nbsp;&nbsp;&nbsp;</span>
+
+    <mat-form-field class="diez-width-number">
+      <input matInput required name="cem_NroPuntoVenta" maxlength="4" type="number"
+      placeholder="Pto. Venta"
+      [ngModel] = "cemSeleccionado.cem_NroPuntoVenta"
+      #ptoventa="ngModel">
+    </mat-form-field>
+
+    <span>&nbsp;&nbsp;-&nbsp;&nbsp;</span>
+
+    <mat-form-field class="veinte-width-number">
+      <input matInput required name="cem_NroComprobante" maxlength="8" type="number"
+      placeholder="Nro."
+      [ngModel] = "cemSeleccionado.cem_NroComprobante"
+      #nro="ngModel">
+    </mat-form-field>
+
+    <span>&nbsp;&nbsp;-&nbsp;&nbsp;</span>
+
+    <mat-form-field class="cinco-width">
+      <input matInput required name="cem_Letra" maxlength="1"
+      placeholder="Letra"
+      [ngModel] = "cemSeleccionado.cem_Letra"
+      #letra="ngModel">
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field class="diez-width">
+      <mat-label>Fecha Emisión</mat-label>
+      <input matInput [matDatepicker]="picker" name="cem_FechaEmision"
+      [ngModel] = "cemSeleccionado.cem_FechaEmision"
+      #fecha="ngModel">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+    <mat-form-field class="cuarenta-width">
+      <mat-select placeholder="Comprador" required
+      [(ngModel)]="cemSeleccionado.cem_cli_IdComprador" name="cem_cli_IdComprador">
+      <mat-option>--</mat-option>
+        <mat-option *ngFor="let cli of clientes" [value]="cli.cli_Id">
+          {{ cli.cli_clc_Codigo }} - {{ cli.cli_Apellido }}, {{ cli.cli_Nombre }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field>
+        <mat-select [formControl]="articulosControl" placeholder="Articulos" #singleSelect>
+          <mat-option>
+            <ngx-mat-select-search [formControl]="articulosFilterControl"
+            [placeholderLabel]="'Buscar...'"
+            [noEntriesFoundLabel]="'No encontrado'" ></ngx-mat-select-search>
+          </mat-option>
+          <mat-option *ngFor="let articulo of articulosFiltrados | async" [value]="articulo">
+            {{ articulo.art_Descripcion }}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <span>&nbsp;&nbsp;</span>
+
+  </form>
+</mat-card>
