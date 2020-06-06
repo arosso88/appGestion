@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { Comprobantes } from '../../../entities/Comprobantes';
 import { Router, ActivatedRoute } from  '@angular/router';
 import { DataService } from '../../../services/data.service';
@@ -16,6 +16,7 @@ import { MatSelect } from '@angular/material/select';
 import { take, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
+
 @Component({
   selector: 'app-cem-emi-edicion',
   templateUrl: './cem-emi-edicion.component.html',
@@ -27,6 +28,7 @@ export class CemEmiEdicionComponent implements OnInit {
   tiposComprobantes: TiposComprobantes[];
   clientes: Clientes[];
   articulos: Articulos[];
+  articuloSeleccionado: Articulos;
 
   public articulosControl: FormControl = new FormControl();
   public articulosFilterControl: FormControl = new FormControl();
@@ -34,6 +36,21 @@ export class CemEmiEdicionComponent implements OnInit {
   public articulosFiltrados: ReplaySubject<Articulos[]> = new ReplaySubject<Articulos[]>(1);
   @ViewChild('singleSelect') singleSelect: MatSelect;
   private _onDestroy = new Subject<void>();
+
+
+  public columns: Array<any>;
+  public rows: Array<any>;
+
+  private currentEditRow: any = null;
+  public currentEditRowID: any = null;
+  public currentEditCell: any = null;
+  private isNewRow: boolean = false;
+
+  public gridStyle: any = {
+    general: {
+        normal: 'grid-ardyn-normal'
+    }
+}
 
   constructor(private _router: Router,
     private _activeRoute: ActivatedRoute,
@@ -135,5 +152,9 @@ export class CemEmiEdicionComponent implements OnInit {
 
   Filtrar(filtro: string) {
 
+  }
+
+  AgregarArticulo(form: any) {
+    Object.keys(form).forEach((key, index) => this.articuloSeleccionado = form[key]);
   }
 }

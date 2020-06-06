@@ -67,20 +67,27 @@
 
     <br>
 
-    <mat-form-field>
-        <mat-select [formControl]="articulosControl" placeholder="Articulos" #singleSelect>
-          <mat-option>
-            <ngx-mat-select-search [formControl]="articulosFilterControl"
-            [placeholderLabel]="'Buscar...'"
-            [noEntriesFoundLabel]="'No encontrado'" ></ngx-mat-select-search>
-          </mat-option>
-          <mat-option *ngFor="let articulo of articulosFiltrados | async" [value]="articulo">
-            {{ articulo.art_Descripcion }}
-          </mat-option>
-        </mat-select>
-    </mat-form-field>
+    <form novalidate #g="ngForm">
+      <mat-form-field>
+          <mat-select [formControl]="articulosControl" placeholder="Articulos" #singleSelect
+          [(ngModel)]="articuloSeleccionado">
+            <mat-option>
+              <ngx-mat-select-search [formControl]="articulosFilterControl"
+              [placeholderLabel]="'Buscar...'"
+              [noEntriesFoundLabel]="'No encontrado'" ></ngx-mat-select-search>
+            </mat-option>
+            <mat-option *ngFor="let articulo of articulosFiltrados | async" [value]="articulo">
+              {{ articulo.art_Descripcion }}
+            </mat-option>
+          </mat-select>
+      </mat-form-field>
 
-    <span>&nbsp;&nbsp;</span>
+      <span>&nbsp;&nbsp;</span>
+
+      <button mat-button class="btn btn-default"
+      [disabled]="g.invalid" (click)="AgregarArticulo(g.value)">Agregar</button>
+
+  </form>
 
   </form>
 </mat-card>
