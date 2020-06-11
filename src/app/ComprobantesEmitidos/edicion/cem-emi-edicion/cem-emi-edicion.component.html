@@ -89,5 +89,48 @@
 
   </form>
 
+  <br>
+
+  <div class="table mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource">
+
+      <ng-container matColumnDef="IdArticulo">
+        <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.IdArticulo}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Nombre">
+        <mat-header-cell *matHeaderCellDef>Articulo</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.Nombre}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Cantidad">
+        <mat-header-cell *matHeaderCellDef>Cantidad</mat-header-cell>
+        <mat-cell *matCellDef="let row; let index = index">
+          <input type="number" formControlName="cantidad">
+        </mat-cell>
+      </ng-container>
+
+    <ng-container matColumnDef="Precio">
+      <mat-header-cell *matHeaderCellDef>Precio</mat-header-cell>
+      <mat-cell *matCellDef="let row; let index = index"  [formGroupName]="index">
+        <input type="number" formControlName="precio">
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Importe">
+      <mat-header-cell *matHeaderCellDef>Importe</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.Importe}}</mat-cell>
+    </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+  </div>
+
+
   </form>
+
+
 </mat-card>

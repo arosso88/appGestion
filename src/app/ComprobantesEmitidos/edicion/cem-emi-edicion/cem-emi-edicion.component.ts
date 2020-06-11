@@ -15,7 +15,8 @@ import { ReplaySubject } from 'rxjs';
 import { MatSelect } from '@angular/material/select';
 import { take, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-
+import { GrillaArticulosDto } from  '../../../Dtos/GrillaArticulosDto';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-cem-emi-edicion',
@@ -23,6 +24,7 @@ import { Subject } from 'rxjs';
   styleUrls: ['./cem-emi-edicion.component.css']
 })
 export class CemEmiEdicionComponent implements OnInit {
+
   cemSeleccionado: Comprobantes;
   titulo: string;
   tiposComprobantes: TiposComprobantes[];
@@ -37,20 +39,9 @@ export class CemEmiEdicionComponent implements OnInit {
   @ViewChild('singleSelect') singleSelect: MatSelect;
   private _onDestroy = new Subject<void>();
 
-
-  public columns: Array<any>;
-  public rows: Array<any>;
-
-  private currentEditRow: any = null;
-  public currentEditRowID: any = null;
-  public currentEditCell: any = null;
-  private isNewRow: boolean = false;
-
-  public gridStyle: any = {
-    general: {
-        normal: 'grid-ardyn-normal'
-    }
-}
+  dataSource: MatTableDataSource<GrillaArticulosDto>;
+  displayedColumns = ['IdArticulo', 'Nombre' ,'Cantidad', 'Precio', 'Importe'];
+  grillaArticulos: GrillaArticulosDto[];
 
   constructor(private _router: Router,
     private _activeRoute: ActivatedRoute,
@@ -59,7 +50,8 @@ export class CemEmiEdicionComponent implements OnInit {
     private _cemService: ComprobantesService,
     private _tcoService: TiposcomprobantesService,
     private _clienteService: ClientesService,
-    private _articulosService: ArticulosHttpService) { }
+    private _articulosService: ArticulosHttpService) {
+     }
 
   ngOnInit(): void {
     this._loginService.IrALoginPorTokenInvalido();
@@ -88,6 +80,8 @@ export class CemEmiEdicionComponent implements OnInit {
     .subscribe(() => {
       this.FiltrarArticulos();
     });
+
+    this.dataSource = new MatTableDataSource(this.grillaArticulos);
   }
 
   ngOnDestroy() {
@@ -156,5 +150,18 @@ export class CemEmiEdicionComponent implements OnInit {
 
   AgregarArticulo(form: any) {
     Object.keys(form).forEach((key, index) => this.articuloSeleccionado = form[key]);
+
+    const articulo = new GrillaArticulosDto(this.articuloSeleccionado.art_Id,
+      this.articuloSeleccionado.art_Descripcion, 0, 0, 0);
+
+    if (!this.grillaArticulos) {
+      const grilla: GrillaArticulosDto[] = [ articulo ];
+      this.grillaArticulos = grilla;
+    }
+    else {
+      this.grillaArticulos.push(articulo);
+    }
+
+    this.dataSource = new MatTableDataSource(this.grillaArticulos);
   }
 }
