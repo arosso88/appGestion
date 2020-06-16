@@ -4,6 +4,7 @@ import { ComprobantesService } from '../../../services/comprobantes.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from  '@angular/router';
 import { LoginService } from '../../../services/login.service';
+import { GrillaArticulosDto } from 'src/app/Dtos/GrillaArticulosDto';
 
 @Component({
   selector: 'app-cem-emi',
@@ -61,5 +62,4 @@ export class CemEmiComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.cemEmitidos);
     })
   }
-
 }

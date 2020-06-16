@@ -3,6 +3,8 @@ export class GrillaArticulosDto{
     public Nombre: string,
     public Cantidad: number,
     public Precio: number,
-    public Importe: number){
+    public Importe: number,
+    public Acciones: string,
+    public PorcentajeIva: number){
   }
 }

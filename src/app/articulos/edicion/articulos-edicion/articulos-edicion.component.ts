@@ -38,7 +38,7 @@ export class ArticulosEdicionComponent implements OnInit {
     const operacion = this._activeRoute.snapshot.paramMap.get("operacion");
 
     if (operacion === "agregar") {
-      this.articuloSeleccionado = new Articulos(0, '', '', 0, 0, '', '', '');
+      this.articuloSeleccionado = new Articulos(0, '', '', 0, 0, '', '', '', 0);
       this.titulo = "Nuevo Artículo";
     }
     else {

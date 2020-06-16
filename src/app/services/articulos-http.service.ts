@@ -56,7 +56,8 @@ export class ArticulosHttpService {
       , articulo.art_cia_Id
       , articulo.codigoUME
       , articulo.descripcionUME
-      , articulo.descripcionCIA);
+      , articulo.descripcionCIA
+      , articulo.porcentajeIva);
   }
 
   GetArticulo(dto: ArticulosDto): Articulos {
@@ -67,7 +68,8 @@ export class ArticulosHttpService {
       , dto.art_cia_Id
       , dto.codigoUME
       , dto.descripcionUME
-      , dto.descripcionCIA);
+      , dto.descripcionCIA
+      , dto.porcentajeIva);
   }
 
   FiltrarPorCodigo(codigo: string): Observable<Articulos[]> {

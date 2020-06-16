@@ -7,6 +7,7 @@ export class ArticulosDto {
     public art_cia_Id: number,
     public codigoUME: string,
     public descripcionUME: string,
-    public descripcionCIA: string
+    public descripcionCIA: string,
+    public porcentajeIva: number
   ) {}
 }

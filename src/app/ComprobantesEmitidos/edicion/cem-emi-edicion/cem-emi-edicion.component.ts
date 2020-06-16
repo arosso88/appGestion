@@ -40,7 +40,7 @@ export class CemEmiEdicionComponent implements OnInit {
   private _onDestroy = new Subject<void>();
 
   dataSource: MatTableDataSource<GrillaArticulosDto>;
-  displayedColumns = ['IdArticulo', 'Nombre' ,'Cantidad', 'Precio', 'Importe'];
+  displayedColumns = ['IdArticulo', 'Nombre' ,'Cantidad', 'Precio', 'Importe', 'acciones'];
   grillaArticulos: GrillaArticulosDto[];
 
   constructor(private _router: Router,
@@ -152,7 +152,7 @@ export class CemEmiEdicionComponent implements OnInit {
     Object.keys(form).forEach((key, index) => this.articuloSeleccionado = form[key]);
 
     const articulo = new GrillaArticulosDto(this.articuloSeleccionado.art_Id,
-      this.articuloSeleccionado.art_Descripcion, 0, 0, 0);
+      this.articuloSeleccionado.art_Descripcion, 0, 0, 0, '', this.articuloSeleccionado.porcentajeIva);
 
     if (!this.grillaArticulos) {
       const grilla: GrillaArticulosDto[] = [ articulo ];
@@ -163,5 +163,25 @@ export class CemEmiEdicionComponent implements OnInit {
     }
 
     this.dataSource = new MatTableDataSource(this.grillaArticulos);
+  }
+
+  EliminarArticulo(articulo: GrillaArticulosDto) {
+    const index = this.grillaArticulos.findIndex(a => a.IdArticulo === articulo.IdArticulo);
+    this.grillaArticulos.splice(index, 1);
+    this.dataSource = new MatTableDataSource(this.grillaArticulos);
+  }
+
+  CambioPrecio(articulo: GrillaArticulosDto, precio: number) {
+    articulo.Precio = precio;
+    this.CalculoImporte(articulo);
+  }
+
+  CambioCantidad(articulo: GrillaArticulosDto, cantidad: number) {
+    articulo.Cantidad = cantidad;
+    this.CalculoImporte(articulo);
+  }
+
+  CalculoImporte(articulo: GrillaArticulosDto) {
+    articulo.Importe = articulo.Precio * articulo.Cantidad;
   }
 }
