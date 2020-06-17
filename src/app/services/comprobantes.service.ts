@@ -4,6 +4,7 @@ import { Observable, pipe, ObservableLike } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Comprobantes } from '../entities/Comprobantes';
 import { ComprobantesDto } from  '../Dtos/ComprobantesDto';
+import { NuevoCEMDto } from '../Dtos/NuevoCEMDto';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,10 @@ export class ComprobantesService {
       .pipe(
         map(x => this.GetComprobante(x))
       );
+  }
+
+  Add(cem: NuevoCEMDto): Observable<void> {
+    return this._httpClient.post<void>(this._cemURL, cem)
   }
 
   GetComprobante(cemDto: ComprobantesDto): Comprobantes {

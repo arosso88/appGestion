@@ -17,6 +17,10 @@ import { take, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { GrillaArticulosDto } from  '../../../Dtos/GrillaArticulosDto';
 import { MatTableDataSource } from '@angular/material/table';
+import { TiposMonedas } from '../../../entities/TiposMonedas';
+import { TmoService } from '../../../services/tmo.service';
+import { NuevoCEMDto } from '../../../Dtos/NuevoCEMDto';
+import { DetalleCEMDto } from  '../../../Dtos/DetalleCEMDto';
 
 @Component({
   selector: 'app-cem-emi-edicion',
@@ -31,6 +35,7 @@ export class CemEmiEdicionComponent implements OnInit {
   clientes: Clientes[];
   articulos: Articulos[];
   articuloSeleccionado: Articulos;
+  tiposMonedas: TiposMonedas[];
 
   public articulosControl: FormControl = new FormControl();
   public articulosFilterControl: FormControl = new FormControl();
@@ -43,6 +48,10 @@ export class CemEmiEdicionComponent implements OnInit {
   displayedColumns = ['IdArticulo', 'Nombre' ,'Cantidad', 'Precio', 'Importe', 'acciones'];
   grillaArticulos: GrillaArticulosDto[];
 
+  subtotal: number;
+  iva: number;
+  total: number;
+
   constructor(private _router: Router,
     private _activeRoute: ActivatedRoute,
     private _dataService: DataService,
@@ -50,7 +59,8 @@ export class CemEmiEdicionComponent implements OnInit {
     private _cemService: ComprobantesService,
     private _tcoService: TiposcomprobantesService,
     private _clienteService: ClientesService,
-    private _articulosService: ArticulosHttpService) {
+    private _articulosService: ArticulosHttpService,
+    private _tmoService: TmoService) {
      }
 
   ngOnInit(): void {
@@ -59,6 +69,7 @@ export class CemEmiEdicionComponent implements OnInit {
     this.CargarClientes();
     this.CargarTiposComprobantes();
     this.CargarArticulos();
+    this.CargarTiposMonedas();
 
     const id = Number(this._activeRoute.snapshot.paramMap.get('id'));
     const operacion = this._activeRoute.snapshot.paramMap.get("operacion");
@@ -82,6 +93,10 @@ export class CemEmiEdicionComponent implements OnInit {
     });
 
     this.dataSource = new MatTableDataSource(this.grillaArticulos);
+
+    this.subtotal = 0;
+    this.iva = 0;
+    this.total = 0;
   }
 
   ngOnDestroy() {
@@ -124,6 +139,10 @@ export class CemEmiEdicionComponent implements OnInit {
     this._tcoService.GetAll('E').subscribe(tcos => { this.tiposComprobantes = tcos; })
   }
 
+  CargarTiposMonedas(){
+    this._tmoService.GetAll().subscribe(tmos => { this.tiposMonedas = tmos; })
+  }
+
   CargarClientes(){
     this._clienteService.GetAll().subscribe(clientes => { this.clientes = clientes; });
   }
@@ -141,7 +160,30 @@ export class CemEmiEdicionComponent implements OnInit {
   }
 
   Guardar(form: any) {
+    Object.keys(form).forEach((key, index) => this.cemSeleccionado[key] = form[key]);
 
+    var detalles = new DetalleCEMDto[this.grillaArticulos.length];
+
+    this.grillaArticulos.forEach((articulo, index) => {
+      var det = new DetalleCEMDto(articulo.IdArticulo
+        , articulo.Cantidad
+        , articulo.Precio
+        , articulo.Importe);
+
+        detalles.push(det);
+    });
+
+    var nuevoCemDto = new NuevoCEMDto(this.cemSeleccionado.cem_tco_Id
+      , this.cemSeleccionado.cem_NroPuntoVenta
+      , this.cemSeleccionado.cem_NroComprobante
+      , this.cemSeleccionado.cem_Letra
+      , this.cemSeleccionado.cem_FechaEmision
+      , this.cemSeleccionado.cem_cli_IdComprador
+      , this.cemSeleccionado.cem_tmo_Id
+      , detalles);
+
+      this._cemService.Add(nuevoCemDto).subscribe();
+      this.Regresar();
   }
 
   Filtrar(filtro: string) {
@@ -169,6 +211,7 @@ export class CemEmiEdicionComponent implements OnInit {
     const index = this.grillaArticulos.findIndex(a => a.IdArticulo === articulo.IdArticulo);
     this.grillaArticulos.splice(index, 1);
     this.dataSource = new MatTableDataSource(this.grillaArticulos);
+    this.CalcularTotales();
   }
 
   CambioPrecio(articulo: GrillaArticulosDto, precio: number) {
@@ -183,5 +226,24 @@ export class CemEmiEdicionComponent implements OnInit {
 
   CalculoImporte(articulo: GrillaArticulosDto) {
     articulo.Importe = articulo.Precio * articulo.Cantidad;
+    this.CalcularTotales();
+  }
+
+  CalcularTotales() {
+    var subt = 0;
+    var iv = 0;
+
+    this.grillaArticulos.forEach((articulo, index) => {
+
+      if (articulo.Importe != 0)
+      {
+        subt = subt + articulo.Importe;
+        iv = iv + (articulo.Importe * (articulo.PorcentajeIva/100))
+      }
+    });
+
+    this.subtotal = subt;
+    this.iva = iv;
+    this.total = subt + iv;
   }
 }
