@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { Comprobantes } from '../entities/Comprobantes';
 import { ComprobantesDto } from  '../Dtos/ComprobantesDto';
 import { NuevoCEMDto } from '../Dtos/NuevoCEMDto';
+import { DetalleComprobantesDto } from '../Dtos/DetalleComprobantesDto';
 
 @Injectable({
   providedIn: 'root'
@@ -36,11 +37,15 @@ export class ComprobantesService {
       );
   }
 
-  Add(cem: NuevoCEMDto): Observable<void> {
-    return this._httpClient.post<void>(this._cemURL, cem)
+  Add(cemDto: ComprobantesDto): Observable<void> {
+    return this._httpClient.post<void>(this._cemURL, cemDto)
   }
 
   GetComprobante(cemDto: ComprobantesDto): Comprobantes {
+    var dia = new Date(cemDto.cem_FechaEmision).getDay();
+    var mes = new Date(cemDto.cem_FechaEmision).getMonth();
+    var m = new Date(cemDto.cem_FechaEmision).getDate();
+
     return new Comprobantes(cemDto.cem_Id,
       cemDto.cem_tco_Id,
       cemDto.cem_cli_IdVendedor,
@@ -50,15 +55,16 @@ export class ComprobantesService {
       cemDto.cem_ImporteIva,
       cemDto.cem_ImporteTotal,
       cemDto.cem_tmo_Id,
-      cemDto.TcoCodigo,
-      cemDto.CodigoComprador,
-      cemDto.NombreComprador,
-      cemDto.CodigoVendedor,
-      cemDto.NombreVendedor,
-      cemDto.SimboloMoneda,
+      cemDto.tcoCodigo,
+      cemDto.codigoComprador,
+      cemDto.nombreComprador,
+      cemDto.codigoVendedor,
+      cemDto.nombreVendedor,
+      cemDto.simboloMoneda,
       cemDto.cem_NroPuntoVenta,
       cemDto.cem_NroComprobante,
-      cemDto.cem_Letra);
+      cemDto.cem_Letra,
+      new Date(cemDto.cem_FechaEmision).toDateString());
   }
 
   Delete(id: number): Observable<void> {
@@ -68,7 +74,7 @@ export class ComprobantesService {
   FiltrarPorComprador(filtro: string, emitidoRecibido: string): Observable<Comprobantes[]> {
     return this.GetAll(emitidoRecibido)
       .pipe(
-        map(x => x.filter(c => c.NombreComprador.toLowerCase().indexOf(filtro.toLowerCase()) >= 0))
+        map(x => x.filter(c => c.nombreComprador.toLowerCase().indexOf(filtro.toLowerCase()) >= 0))
       );
   }
 

@@ -21,6 +21,8 @@ import { TiposMonedas } from '../../../entities/TiposMonedas';
 import { TmoService } from '../../../services/tmo.service';
 import { NuevoCEMDto } from '../../../Dtos/NuevoCEMDto';
 import { DetalleCEMDto } from  '../../../Dtos/DetalleCEMDto';
+import { DetalleComprobantesDto } from 'src/app/Dtos/DetalleComprobantesDto';
+import { ComprobantesDto } from 'src/app/Dtos/ComprobantesDto';
 
 @Component({
   selector: 'app-cem-emi-edicion',
@@ -75,7 +77,7 @@ export class CemEmiEdicionComponent implements OnInit {
     const operacion = this._activeRoute.snapshot.paramMap.get("operacion");
 
     if (operacion === "agregar") {
-      this.cemSeleccionado = new Comprobantes(0,0,0,0,new Date(),0,0,0,0,'',0,'',0,'','',0,0,'');
+      this.cemSeleccionado = new Comprobantes(0,0,0,0,new Date(),0,0,0,0,'',0,'',0,'','',0,0,'', '');
       this.titulo = "Nuevo Comprobante Emitido";
     }
     else {
@@ -162,27 +164,44 @@ export class CemEmiEdicionComponent implements OnInit {
   Guardar(form: any) {
     Object.keys(form).forEach((key, index) => this.cemSeleccionado[key] = form[key]);
 
-    var detalles = new DetalleCEMDto[this.grillaArticulos.length];
+    var detalles = new Array<DetalleComprobantesDto>();
 
     this.grillaArticulos.forEach((articulo, index) => {
-      var det = new DetalleCEMDto(articulo.IdArticulo
-        , articulo.Cantidad
-        , articulo.Precio
-        , articulo.Importe);
+      var det = new DetalleComprobantesDto(0
+        , 0
+        , articulo.IdArticulo
+        , articulo.Nombre
+        , Number(articulo.Cantidad)
+        , Number(articulo.Precio)
+        , Number(articulo.Importe)
+        , this.cemSeleccionado.cem_tmo_Id
+        , 0
+        , 0);
 
         detalles.push(det);
     });
 
-    var nuevoCemDto = new NuevoCEMDto(this.cemSeleccionado.cem_tco_Id
+    var cemDto = new ComprobantesDto(0
+      , this.cemSeleccionado.cem_tco_Id
+      , 0
+      , this.cemSeleccionado.cem_cli_IdComprador
+      , this.cemSeleccionado.cem_FechaEmision
+      , 0
+      , 0
+      , 0
+      , this.cemSeleccionado.cem_tmo_Id
+      , ''
+      , 0
+      , ''
+      , 0
+      , ''
+      , ''
       , this.cemSeleccionado.cem_NroPuntoVenta
       , this.cemSeleccionado.cem_NroComprobante
       , this.cemSeleccionado.cem_Letra
-      , this.cemSeleccionado.cem_FechaEmision
-      , this.cemSeleccionado.cem_cli_IdComprador
-      , this.cemSeleccionado.cem_tmo_Id
       , detalles);
 
-      this._cemService.Add(nuevoCemDto).subscribe();
+      this._cemService.Add(cemDto).subscribe();
       this.Regresar();
   }
 

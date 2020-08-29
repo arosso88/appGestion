@@ -19,12 +19,12 @@
 
     <ng-container matColumnDef="Fecha">
       <mat-header-cell *matHeaderCellDef>Fecha Emisión</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{element.cem_FechaEmision}}</mat-cell>
+      <mat-cell *matCellDef="let element">{{element.fechaString}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="TcoCodigo">
       <mat-header-cell *matHeaderCellDef>Tipo Cbte.</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{element.TcoCodigo}}</mat-cell>
+      <mat-cell *matCellDef="let element">{{element.tcoCodigo}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="PtoVenta">
@@ -44,12 +44,17 @@
 
     <ng-container matColumnDef="Vendedor">
       <mat-header-cell *matHeaderCellDef>Vendedor</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{element.NombreVendedor}}</mat-cell>
+      <mat-cell *matCellDef="let element">{{element.nombreVendedor}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Comprador">
       <mat-header-cell *matHeaderCellDef>Comprador</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{element.NombreComprador}}</mat-cell>
+      <mat-cell *matCellDef="let element">{{element.nombreComprador}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Moneda">
+      <mat-header-cell *matHeaderCellDef>Mon.</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.simboloMoneda}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Subtotal">

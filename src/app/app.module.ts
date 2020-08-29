@@ -56,6 +56,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule} from '@angular/forms';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -141,6 +142,7 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
     MatDatepickerModule,
     MatNativeDateModule,
     DataService,
+    DatePipe,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true } ],
   bootstrap: [AppComponent]
 })

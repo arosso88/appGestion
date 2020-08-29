@@ -14,7 +14,7 @@ import { GrillaArticulosDto } from 'src/app/Dtos/GrillaArticulosDto';
 export class CemEmiComponent implements OnInit {
   cemEmitidos: Comprobantes[];
   dataSource: MatTableDataSource<Comprobantes>;
-  displayedColumns = ['Id', 'Fecha', 'TcoCodigo' , 'PtoVenta' , 'Numero', 'Letra', 'Vendedor', 'Comprador', 'Subtotal', 'Iva', 'Total',  'acciones']
+  displayedColumns = ['Id', 'Fecha', 'TcoCodigo' , 'PtoVenta' , 'Numero', 'Letra', 'Vendedor', 'Comprador', 'Moneda' ,'Subtotal', 'Iva', 'Total',  'acciones']
 
   constructor(private _cemService: ComprobantesService,
     private _router: Router,
