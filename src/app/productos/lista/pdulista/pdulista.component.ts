@@ -5,7 +5,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from  '@angular/router';
 import { LoginService } from '../../../services/login.service';
 
-
 @Component({
   selector: 'app-pdulista',
   templateUrl: './pdulista.component.html',

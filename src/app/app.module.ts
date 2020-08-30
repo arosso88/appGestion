@@ -59,6 +59,10 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { DatePipe } from '@angular/common';
 import { PdulistaComponent } from './productos/lista/pdulista/pdulista.component';
 import { PduedicionComponent } from './productos/edicion/pduedicion/pduedicion.component';
+import { CosechaslistaComponent } from './cosechas/lista/cosechaslista/cosechaslista.component';
+import { CosechasedicionComponent } from './cosechas/edicion/cosechasedicion/cosechasedicion.component';
+import { OvelistaComponent } from './ordenesVenta/lista/ovelista/ovelista.component';
+import { OveedicionComponent } from './ordenesVenta/edicion/oveedicion/oveedicion.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +87,11 @@ import { PduedicionComponent } from './productos/edicion/pduedicion/pduedicion.c
     CemEmiComponent,
     CemEmiEdicionComponent,
     PdulistaComponent,
-    PduedicionComponent
+    PduedicionComponent,
+    CosechaslistaComponent,
+    CosechasedicionComponent,
+    OvelistaComponent,
+    OveedicionComponent
   ],
   imports: [
     BrowserModule,
@@ -115,6 +123,10 @@ import { PduedicionComponent } from './productos/edicion/pduedicion/pduedicion.c
       { path: 'articulos/:operacion/:id', component: ArticulosEdicionComponent },
       { path: 'productos', component: PdulistaComponent },
       { path: 'productos/:operacion/:id', component: PduedicionComponent},
+      { path: 'cosechas', component: CosechaslistaComponent },
+      { path: 'cosechas/:operacion/:id', component: CosechasedicionComponent},
+      { path: 'ove', component: OvelistaComponent },
+      { path: 'ove/:operacion/:id', component: OveedicionComponent},
       { path: 'tmo', component: TiposmonedaslistaComponent },
       { path: 'tmo/:operacion/:id', component: TiposmonedasedicionComponent },
       { path: 'clientes', component: ClientesListaComponent },

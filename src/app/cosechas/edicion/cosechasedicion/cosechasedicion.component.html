@@ -2,22 +2,22 @@
   <span>{{ titulo }}</span>
 </mat-toolbar>
 
-<mat-card *ngIf="productoSeleccionado">
+<mat-card *ngIf="cosechaSeleccionada">
   <form novalidate #f="ngForm">
 
     <mat-form-field>
-      <input matInput required name="pdu_Id"
+      <input matInput required name="pch_Id"
       placeholder="Id"
-      [ngModel] ="productoSeleccionado.pdu_Id" #Id="ngModel">
+      [ngModel] ="cosechaSeleccionada.pch_Id" #Id="ngModel">
         <mat-error *ngIf="Id.invalid">"Debe ingresar un Id</mat-error>
     </mat-form-field>
 
     <br>
 
     <mat-form-field>
-      <input matInput required name="pdu_Descripcion"
+      <input matInput required name="pch_Descripcion"
       placeholder="Descripcion"
-      [ngModel] ="productoSeleccionado.pdu_Descripcion" #Descripcion="ngModel">
+      [ngModel] ="cosechaSeleccionada.pch_Descripcion" #Descripcion="ngModel">
         <mat-error *ngIf="Descripcion.invalid">"Debe ingresar una Descripcion</mat-error>
     </mat-form-field>
 

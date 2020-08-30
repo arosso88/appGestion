@@ -55,6 +55,14 @@ export class AppComponent {
 
   }
 
+  IrAOVEListado(){
+    this._router.navigate(['/ove']);
+  }
+
+  IrAOVENueva(){
+    this._router.navigate(['/ove', 'agregar', 0]);
+  }
+
   IrACEMEmitidos(){
     this._router.navigate(['/cemEmi']);
   }
@@ -93,6 +101,10 @@ export class AppComponent {
 
   IrAPDU() {
     this._router.navigate(['/productos']);
+  }
+
+  IrAPCH() {
+    this._router.navigate(['/cosechas']);
   }
 
   IrAClientes(){

@@ -93,6 +93,16 @@
         <button mat-menu-item (click)="IrATNU()">Tablas de Numeración</button>
         <button mat-menu-item (click)="IrATCO()">Tipos Comprobantes</button>
         <button mat-menu-item (click)="IrAPDU()">Productos</button>
+        <button mat-menu-item (click)="IrAPCH()">Cosechas</button>
+      </mat-menu>
+
+      <mat-list-item (click)="menuOrdenesVenta.openMenu()">
+        <mat-icon>assignment</mat-icon>Ordenes Venta
+        <button mat-icon-button #menuOrdenesVenta="matMenuTrigger" [matMenuTriggerFor]="ove"></button>
+      </mat-list-item>
+      <mat-menu #ove="matMenu">
+        <button mat-menu-item (click)="IrAOVEListado()">Listado</button>
+        <button mat-menu-item (click)="IrAOVENueva()">Nueva</button>
       </mat-menu>
 
       <mat-list-item (click)="menuComprobantesEmitidos.openMenu()">
