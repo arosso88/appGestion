@@ -91,6 +91,10 @@ export class AppComponent {
     this._router.navigate(['/tco']);
   }
 
+  IrAPDU() {
+    this._router.navigate(['/productos']);
+  }
+
   IrAClientes(){
     this._router.navigate(['/clientes']);
   }

@@ -57,6 +57,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule} from '@angular/forms';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { DatePipe } from '@angular/common';
+import { PdulistaComponent } from './productos/lista/pdulista/pdulista.component';
+import { PduedicionComponent } from './productos/edicion/pduedicion/pduedicion.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +81,9 @@ import { DatePipe } from '@angular/common';
     TipoComprobantesListaComponent,
     TiposComprobantesEdicionComponent,
     CemEmiComponent,
-    CemEmiEdicionComponent
+    CemEmiEdicionComponent,
+    PdulistaComponent,
+    PduedicionComponent
   ],
   imports: [
     BrowserModule,
@@ -109,6 +113,8 @@ import { DatePipe } from '@angular/common';
     RouterModule.forRoot([
       { path: 'articulos', component: ArticulosListaComponent },
       { path: 'articulos/:operacion/:id', component: ArticulosEdicionComponent },
+      { path: 'productos', component: PdulistaComponent },
+      { path: 'productos/:operacion/:id', component: PduedicionComponent},
       { path: 'tmo', component: TiposmonedaslistaComponent },
       { path: 'tmo/:operacion/:id', component: TiposmonedasedicionComponent },
       { path: 'clientes', component: ClientesListaComponent },
